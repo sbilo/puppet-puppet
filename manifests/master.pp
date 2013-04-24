@@ -4,7 +4,10 @@ class puppet::master (
     $ssl_client_verify_header = $puppet::master::params::ssl_client_verify_header,
     $autosign                 = $puppet::master::params::autosign,
     $external_nodes           = $puppet::master::params::external_nodes,
-    $node_terminus            = $puppet::master::params::node_terminus,) inherits puppet::master::params {
+    $node_terminus            = $puppet::master::params::node_terminus,
+    $modulepath               = $puppet::master::params::modulepath,
+    $factpath                 = $puppet::master::params::factpath,
+    $templatedir              = $puppet::master::params::templatedir,) inherits puppet::master::params {
     include puppet
 
     package { 'puppetmaster': ensure => $puppet::ensure, }
@@ -35,7 +38,22 @@ class puppet::master (
         value   => $autosign,
     }
 
-    if (defined($external_nodes)) {
+    ini_setting { 'modulepath':
+        setting => 'modulepath',
+        value   => $modulepath,
+    }
+
+    ini_setting { 'factpath':
+        setting => 'factpath',
+        value   => $factpath,
+    }
+
+    ini_setting { 'templatedir':
+        setting => 'templatedir',
+        value   => $templatedir,
+    }
+
+    if ($external_nodes!='') {
         ini_setting { 'external_nodes':
             setting => 'external_nodes',
             value   => $external_nodes,
