@@ -1,0 +1,10 @@
+name 'proteon-puppet'
+version ''
+
+author 'Sander Bilo'
+license ''
+project_page ''
+source ''
+summary ''
+description ''
+dependency 'cprice404/inifile', '>=0.10.0'

@@ -1,0 +1,30 @@
+{
+  "name": "proteon-puppet",
+  "author": "Sander Bilo",
+  "description": "",
+  "license": "",
+  "project_page": "",
+  "source": "",
+  "summary": "",
+  "version": "",
+  "checksums": {
+    "Modulefile": "883c731610019dd9b42232284181eb27",
+    "README.md": "ffb26f33abefc2e55bf0f01592b4b767",
+    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
+    "manifests/agent.pp": "441285c27f922f8eb8795c1d2777c1b8",
+    "manifests/agent/params.pp": "e97034df4ce5767de3349f25e03c97e1",
+    "manifests/init.pp": "022ab4f85fff0e5fe36f0d0d59d082b2",
+    "manifests/master.pp": "85b04503180685b7c6fad05f00b291a0",
+    "manifests/master/params.pp": "dfd06e5886b7cdeb5063f96e1821ab01",
+    "manifests/params.pp": "e9e4fac0d29dc71a5fa107fe5a7ea25e",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "tests/init.pp": "d2609a7f67522ad7f71f07be8070ecaa"
+  },
+  "dependencies": [
+    {
+      "name": "cprice404/inifile",
+      "version_requirement": "\u003e\u003d0.10.0"
+    }
+  ]
+}
