@@ -6,9 +6,9 @@
   "project_page": "",
   "source": "",
   "summary": "",
-  "version": "",
+  "version": "0.1.0",
   "checksums": {
-    "Modulefile": "883c731610019dd9b42232284181eb27",
+    "Modulefile": "15598e80452cbf3753b874578191eb9f",
     "README.md": "ffb26f33abefc2e55bf0f01592b4b767",
     "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
     "manifests/agent.pp": "441285c27f922f8eb8795c1d2777c1b8",

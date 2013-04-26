@@ -1,5 +1,5 @@
 name 'proteon-puppet'
-version ''
+version '0.1.0'
 
 author 'Sander Bilo'
 license ''
