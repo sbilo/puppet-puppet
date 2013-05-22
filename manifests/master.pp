@@ -7,7 +7,9 @@ class puppet::master (
     $node_terminus            = $puppet::master::params::node_terminus,
     $modulepath               = $puppet::master::params::modulepath,
     $factpath                 = $puppet::master::params::factpath,
-    $templatedir              = $puppet::master::params::templatedir,) inherits puppet::master::params {
+    $templatedir              = $puppet::master::params::templatedir,
+    $reports                  = $puppet::master::params::reports,
+    $reporturl                = $puppet::master::params::reporturl,) inherits puppet::master::params {
     include puppet
 
     package { 'puppetmaster': ensure => $puppet::ensure, }
@@ -53,7 +55,7 @@ class puppet::master (
         value   => $templatedir,
     }
 
-    if ($external_nodes!='') {
+    if ($external_nodes != '') {
         ini_setting { 'external_nodes':
             setting => 'external_nodes',
             value   => $external_nodes,
@@ -62,6 +64,20 @@ class puppet::master (
         ini_setting { 'node_terminus':
             setting => 'node_terminus',
             value   => $node_terminus,
+        }
+    }
+
+    if ($reports != '') {
+        ini_setting { 'reports':
+            setting => 'reports',
+            value   => $reports,
+        }
+
+        if ('http' in $reports and $reporturl != '') {
+            ini_setting { 'reporturl':
+                setting => 'reporturl',
+                value   => $reporturl,
+            }
         }
     }
 }

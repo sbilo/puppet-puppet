@@ -8,4 +8,6 @@ class puppet::master::params {
     $modulepath               = '$confdir/modules'
     $factpath                 = '$vardir/lib/facter'
     $templatedir              = '$confdir/templates'
+    $reports                  = undef
+    $reporturl                = undef
 }
