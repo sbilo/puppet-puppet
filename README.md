@@ -1,4 +1,4 @@
-puppet-puppet
+sbilo-puppet
 =============
 
-Placeholder for the puppet module (this installs and configures puppet)
+This module installs/configures puppet from the puppetlabs-apt repositories. Can be used for master and agent.
