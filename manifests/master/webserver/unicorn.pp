@@ -1,4 +1,8 @@
-class puppet::master::webserver::unicorn {
+class puppet::master::webserver::unicorn (
+  $worker_processes  = 8,
+  $working_directory = '/usr/share/puppet/ext/rack/files/',
+  $listen            = '\'/var/run/puppet/puppetmaster_unicorn.sock\', :backlog => 512',
+  $pid               = '/var/run/puppet/puppetmaster_unicorn.pid') {
   
   package { 'puppetmaster':
     ensure  => 'absent',
@@ -45,9 +49,10 @@ class puppet::master::webserver::unicorn {
   }
 
   ::unicorn::instance { 'puppetmaster':
-    working_directory => '/usr/share/puppet/ext/rack/files/',
-    listen            => '\'/var/run/puppet/puppetmaster_unicorn.sock\', :backlog => 512',
-    pid               => '/var/run/puppet/puppetmaster_unicorn.pid',
+    worker_processes  => $worker_processes,
+    working_directory => $working_directory,
+    listen            => $listen,
+    pid               => $pid,
     user              => 'puppet',
   }
 
