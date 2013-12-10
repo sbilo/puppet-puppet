@@ -11,7 +11,7 @@ class puppet::master (
   $webserver      = $puppet::master::params::webserver) inherits puppet::master::params {
   include puppet
 
-  package { 'puppetmaster':
+  package { 'puppetmaster-common':
     ensure  => $puppet::ensure,
     require => Apt::Source['puppetlabs']
   }
@@ -74,6 +74,6 @@ class puppet::master (
   }
 
   class { "puppet::master::webserver::${webserver}":
-    require => Package['puppetmaster'],
+    require => Package['puppetmaster-common'],
   }
 }

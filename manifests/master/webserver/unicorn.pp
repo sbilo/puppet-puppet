@@ -1,23 +1,21 @@
 class puppet::master::webserver::unicorn {
-  service { 'puppetmaster':
-    ensure    => stopped,
-    enable    => false,
-    hasstatus => true,
-    provider  => 'upstart',
-    require   => [Class['::unicorn'], Class['::nginx']],
+  
+  package { 'puppetmaster':
+    ensure  => 'absent',
+    require => Apt::Source['puppetlabs']
   }
 
   if (!defined(Package['rubygems'])) {
     package { 'rubygems': ensure => installed, }
   }
 
-  ::nginx::server { $::fqdn:
+  ::nginx::server { "${::fqdn}_8140":
     listen      => '8140 default_server ssl',
     server_name => undef
   }
 
   ::nginx::server::location { 'default':
-    server           => $::fqdn,
+    server           => "${::fqdn}_8140",
     location         => '/',
     proxy_pass       => 'http://unix:/var/run/puppet/puppetmaster_unicorn.sock',
     proxy_redirect   => 'off',
@@ -31,8 +29,8 @@ class puppet::master::webserver::unicorn {
       ]
   }
 
-  nginx::server::ssl { $::fqdn:
-    server                 => $::fqdn,
+  ::nginx::server::ssl { "${::fqdn}_8140":
+    server                 => "${::fqdn}_8140",
     ssl_certificate        => "/var/lib/puppet/ssl/certs/${::fqdn}.pem",
     ssl_certificate_key    => "/var/lib/puppet/ssl/private_keys/${::fqdn}.pem",
     ssl_client_certificate => '/var/lib/puppet/ssl/ca/ca_crt.pem',

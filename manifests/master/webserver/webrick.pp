@@ -13,4 +13,9 @@ class puppet::master::webserver::webrick {
     section => 'master',
     ensure  => $puppet::ensure,
   }
+  
+  package { 'puppetmaster':
+    ensure  => $puppet::ensure,
+    require => Apt::Source['puppetlabs']
+  }
 }
