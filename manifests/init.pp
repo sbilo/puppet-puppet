@@ -18,7 +18,9 @@ class puppet (
   $rundir  = $puppet::params::rundir,
   $ensure  = present) inherits puppet::params {
   
-  class { 'apt': }
+  class { 'apt': 
+    always_apt_update    => false,
+  }
 
   apt::source { 'puppetlabs':
     location   => 'http://apt.puppetlabs.com',
